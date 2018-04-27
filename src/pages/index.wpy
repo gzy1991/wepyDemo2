@@ -46,7 +46,6 @@
     </panel>
 
     <panel>
-      
       <!-- <button @tap="toast" size="mini">第三方组件</button> -->
       <button @tap="communicate" size="mini">组件通信</button>
       <button @tap="tap" size="mini">混合TAP事件</button>
@@ -96,9 +95,20 @@
   import List from '../components/list' // aliasFields example
   import Group from '../components/group'
   import testMixin from '../mixins/test'
+  import Promise from 'promise-polyfill';
 
  
   export default class Index extends wepy.page {
+     onLoad() {
+      //await wepy.login();
+      console.log("onLoad");
+      this.userInfo =  wepy.getUserInfo();
+      console.log(this.userInfo)
+      console.log(this.userInfo.nickName)
+
+    };
+
+
     config = {
       navigationBarTitleText: 'test'
     }
@@ -221,34 +231,6 @@
       }
     }
 
-    async onLoad() {
-      // let self = this
-      
-      //await wepy.login();
-      wx.getUserInfo({
-          success:res=>{
-              this.setData({
-                userInfo: res.userInfo
-                 
-              })
-          }
-      });
-       console.log(this.userInfo);
-      
-      // self.$parent.getUserInfo(function (userInfo) {
-      //   if (userInfo) {
-      //     self.userInfo = userInfo
-      //   }
-      //   self.normalTitle = '标题已被修改'
-
-      //   self.setTimeoutTitle = '标题三秒后会被修改'
-      //   setTimeout(() => {
-      //     self.setTimeoutTitle = '到三秒了'
-      //     self.$apply()
-      //   }, 3000)
-
-      //   self.$apply()
-      // })
-    }
+ 
   }
 </script>

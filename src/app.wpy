@@ -3,8 +3,12 @@
 
 <script>
 import wepy from 'wepy'
-
+import Promise from 'promise-polyfill';
 export default class extends wepy.app {
+    constructor () {
+        super();
+        this.use('promisify');
+    }
   config = {
     pages: [
       'pages/index'
@@ -18,7 +22,9 @@ export default class extends wepy.app {
   }
 
   onLaunch() {
-    console.log('on launch')
+    console.log('on launch');
+    this.userInfo =  wepy.getUserInfo();
+    console.log(this.userInfo);
   }
 }
 </script>

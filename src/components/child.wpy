@@ -1,0 +1,28 @@
+<template>
+  <view @tap="tap">Click me</view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class List extends wepy.component {
+
+    methods = {
+      tap () {
+        console.log('child is clicked')
+        this.$emit('childFn', 100)
+      }
+    }
+
+
+    props = {
+        title: String
+      };
+
+      onLoad () {
+        console.log(this.title); // mytitle
+      }
+  }
+
+
+</script>

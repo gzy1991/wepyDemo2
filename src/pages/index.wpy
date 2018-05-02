@@ -25,7 +25,6 @@
     <panel>
       <view>
           <panel>
-              
           </panel>
           <counter1 :num="myNum"></counter1>
           <counter2 :num.sync="syncNum"></counter2>
@@ -93,11 +92,12 @@
   import Panel from '../components/panel' // alias example
   import Counter from '../components/counter' // alias example
   import List from '../components/list' // aliasFields example
+  import Child from '../components/child';
   import Group from '../components/group'
   import testMixin from '../mixins/test'
   import Promise from 'promise-polyfill';
 
- 
+
   export default class Index extends wepy.page {
      onLoad() {
       //await wepy.login();
@@ -117,12 +117,14 @@
       counter1: Counter,
       counter2: Counter,
       list: List,
+      child: Child,
       group: Group
     }
 
     mixins = [testMixin]
 
     data = {
+      list: [{id: 1, title: 'title1'}, {id: 2, title: 'title2'}],
       mynum: 20,
       syncNum: 100,
       items: [1, 2, 3, 4],
@@ -189,7 +191,7 @@
       plus () {
         this.mynum++
       },
-      
+
       handleViewTap () {
         console.log('log from handleViewTap ' + this.$name)
       },
@@ -231,6 +233,6 @@
       }
     }
 
- 
+
   }
 </script>
